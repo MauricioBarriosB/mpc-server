@@ -15,6 +15,7 @@ const sections = [
   { id: 'ejemplos', label: '12. Ejemplos Reales', icon: '🌍' },
   { id: 'practicas', label: '13. Mejores Prácticas', icon: '✅' },
   { id: 'patrones', label: '14. Patrones Avanzados', icon: '🧩' },
+  { id: 'sdk', label: '15. SDK MCP', icon: '📚' },
 ];
 
 export function Sidebar() {
@@ -58,7 +59,7 @@ export function Sidebar() {
         ))}
       </nav>
       <div className="sidebar-footer">
-        <span>MCP v1.0</span>
+        <span>MCP v1.11</span>
       </div>
     </aside>
   );

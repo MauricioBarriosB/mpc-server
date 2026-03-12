@@ -15,4 +15,5 @@ export { PromptsSection } from './PromptsSection';
 export { RealWorldExamplesSection } from './RealWorldExamplesSection';
 export { BestPracticesSection } from './BestPracticesSection';
 export { AdvancedPatternsSection } from './AdvancedPatternsSection';
+export { SDKSection } from './SDKSection';
 export { Footer } from './Footer';

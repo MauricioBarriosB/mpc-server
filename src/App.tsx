@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Header,
   Sidebar,
@@ -16,10 +17,56 @@ import {
   RealWorldExamplesSection,
   BestPracticesSection,
   AdvancedPatternsSection,
+  SDKSection,
   Footer,
 } from './components';
 
 function App() {
+  useEffect(() => {
+    const sections = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.05,
+        rootMargin: '0px 0px 0px 0px'
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Handle nav clicks - make target section visible immediately
+    const handleNavClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href^="#"]');
+      if (link) {
+        const href = link.getAttribute('href');
+        if (href) {
+          const section = document.querySelector(href);
+          if (section) {
+            // Small delay to let scroll start, then make visible
+            setTimeout(() => {
+              section.classList.add('visible');
+            }, 100);
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleNavClick);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('click', handleNavClick);
+    };
+  }, []);
+
   return (
     <div className="app-layout">
       <Sidebar />
@@ -95,6 +142,11 @@ function App() {
 
           <section id="patrones">
             <AdvancedPatternsSection />
+          </section>
+          <hr className="divider" />
+
+          <section id="sdk">
+            <SDKSection />
           </section>
         </main>
         <Footer />

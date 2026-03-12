@@ -85,6 +85,7 @@ main {
   max-width: 1100px;
   margin: 0 auto;
   padding: 60px 60px 100px;
+  padding-bottom: 60vh; /* Extra padding to allow last sections to scroll into view */
   position: relative;
   z-index: 1;
 }
@@ -667,6 +668,24 @@ html {
   overflow-y: auto;
 }
 
+/* Thin scrollbar for sidebar */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -719,10 +738,35 @@ html {
   min-width: 0;
 }
 
-/* Section scroll offset for fixed header */
+/* Section scroll offset and fade-in animation */
 section {
   scroll-margin-top: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animations inside visible sections */
+section.visible .code-block,
+section.visible .callout,
+section.visible .flow-step,
+section.visible .arch-cell,
+section.visible h3,
+section.visible h4,
+section.visible p,
+section.visible ul,
+section.visible table {
+  animation: fadeUp 0.5s ease-out both;
+}
+
+section.visible .code-block:nth-child(1) { animation-delay: 0.1s; }
+section.visible .code-block:nth-child(2) { animation-delay: 0.2s; }
+section.visible .code-block:nth-child(3) { animation-delay: 0.3s; }
 
 /* Active link styling (optional JS enhancement) */
 .sidebar-link.active {
