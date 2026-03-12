@@ -2,6 +2,10 @@
 
 A comprehensive visual guide for building custom MCP (Model Context Protocol) servers with TypeScript.
 
+[https://mauriciobarriosb.github.io/mpc-server](https://mauriciobarriosb.github.io/mpc-server)
+
+---
+
 ## About
 
 This project provides detailed documentation covering:
@@ -42,12 +46,6 @@ npm run build
 # Preview production build
 npm run preview
 ```
-
-## Deployment
-
-This project is configured for GitHub Pages. Push to `main` branch to trigger automatic deployment.
-
-Live site: `https://YOUR_USERNAME.github.io/mpc-server/`
 
 ## License
 
